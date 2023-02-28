@@ -95,6 +95,24 @@ route.delete("/v1/contacts/:id",async(req,res)=>{
    
 })
 
+route.put("/v1/contacts/:id",async(req,res)=>{
+    try {
+      console.log(req.params,req.body)
+   
+        const dat=await contact.update({_id:req.params.id},req.body) 
+        console.log(dat)
+        res.status(204).json({
+            data:dat
+
+        })
+    } catch (e) {
+        
+        res.status(404).json({
+            err:"There is no contact with that id"
+        })
+    }
+   
+})
 route.patch("/v1/contacts/:id",async(req,res)=>{
     try {
       console.log(req.params,req.body)
